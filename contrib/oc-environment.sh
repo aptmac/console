@@ -56,3 +56,12 @@ HELM_REPOSITORY_CONFIG="/tmp/repositories.yaml"
 export HELM_REPOSITORY_CONFIG
 
 echo "Using $BRIDGE_K8S_MODE_OFF_CLUSTER_ENDPOINT"
+
+export BRIDGE_PLUGINS="cryostat-plugin=http://localhost:9001"
+export BRIDGE_I18N_NAMESPACES="plugin__cryostat-plugin"
+PLUGIN_PROXY='{"services": [
+    {"consoleAPIPath": "/api/proxy/plugin/cryostat-plugin/cryostat-plugin-proxy/", "endpoint":"http://localhost:8181"},
+    {"consoleAPIPath": "/api/proxy/plugin/cryostat-plugin/cryostat-plugin-proxy/upstream/", "endpoint":"http://localhost:8181"},
+    {"consoleAPIPath": "/api/v4/", "endpoint":"http://localhost:8181/api/v4/"}
+]}'
+export BRIDGE_PLUGIN_PROXY="${PLUGIN_PROXY}"
